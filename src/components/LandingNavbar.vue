@@ -7,7 +7,7 @@
                     <span class="nav-button"><a class="aLink">About us</a></span>
                 </li>
                 <li>
-                    <span class="nav-button"><a class="aLink">Sign up</a></span>
+                    <span class="nav-button"><router-link class="aLink" to="/signup">Sign up</router-link></span>
                 </li>
                 <li>
                     <span class="nav-button"><router-link class="aLink" to="/login">Log in</router-link></span>
