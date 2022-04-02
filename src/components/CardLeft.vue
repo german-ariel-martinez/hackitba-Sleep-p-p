@@ -62,7 +62,6 @@ export default {
 .card_img {
     height: 80%;
     width: 80%;
-    border-radius: 50%;
 }
 .card_title {
     display: flex;

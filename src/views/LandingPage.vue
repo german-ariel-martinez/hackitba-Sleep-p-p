@@ -17,7 +17,7 @@
         </div>
         <cardLeft title="2. Complete the form" 
                    text="We would love to know more about you! Complete this form so your account registration is completed. We will ask you to verify your email, just log in into your email service provider and don't forget to check your spam box if the mail doesn't arrive, it might take a minute." 
-                   img="signupSS.png"/>
+                   img="signupFormCut.png"/>
         <!-- HOW DOES IT WORK -->
         <divider title="How does it work"/>
         <div class="card-body">
