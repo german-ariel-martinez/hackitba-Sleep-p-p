@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <landingPage/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import landingPage from '@/views/LandingPage.vue'
 
 export default {
   name: 'LandingPage',
   components: {
-    landingPage
   }
 }
 </script>

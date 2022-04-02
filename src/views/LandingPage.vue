@@ -126,7 +126,7 @@
         margin: 5px;
     }
     .landing-footer {
-    background-color: #202844;
+        background-color: #202844;
     }
 
     .card-body {

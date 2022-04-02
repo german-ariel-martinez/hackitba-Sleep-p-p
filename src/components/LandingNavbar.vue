@@ -1,25 +1,28 @@
 <template>
     <div class="navbar">
         <div class="navbar-brand-col"><span class="brand">The Stocker.</span></div>
-        <div class="navbar-functions">
-            <div class="links">
-                <ul class="navbar_links">
-                    <li>
-                        <span class="nav-button">About us</span>
-                    </li>
-                    <li>
-                        <span class="nav-button">Sign up</span>
-                    </li>
-                    <li>
-                        <span class="nav-button">Log in</span>
-                    </li>
-                </ul>
-            </div>
+        <div class="links">
+            <ul class="navbar_links">
+                <li>
+                    <span class="nav-button"><a class="aLink">About us</a></span>
+                </li>
+                <li>
+                    <span class="nav-button"><a class="aLink">Sign up</a></span>
+                </li>
+                <li>
+                    <span class="nav-button"><router-link class="aLink" to="/login">Log in</router-link></span>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <style scoped>
+    .aLink {
+        text-decoration: none;
+        cursor: pointer;
+        color:white;
+    }
     .brand {
         font-size: 5vh;
         color: white;
@@ -49,23 +52,16 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: start;
-        width: 100%;
+        justify-content: flex-start;
+        width: 20%;
         margin-left: 2.5%;
-    }
-    .navbar-functions {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: end;
-        width: 100%;
     }
     .links {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        width: 80%;
+        width: 75%;
         height: 80%;
         margin-right: 10px;
         border-top-right-radius: 15px;

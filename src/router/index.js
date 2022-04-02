@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LPage from '../views/LandingPage.vue'
+import LoginPage from '../views/LoginPage.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LPage
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginPage
   }
 ]
 
