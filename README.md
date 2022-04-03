@@ -1,4 +1,8 @@
 # The Stocker
+## Sleep++
+- Agustín Roca
+- Santiago Preusche
+- Germán Martinez
 ## Introducción al problema
 La economía es parte de la vida de todas las personas. Desde ahorrar hasta hacer trading con criptomonedas. La velocidad con la que está avanzando este mundo es muy alta y así como muchos pueden seguirla minuto a minuto, muchos otros quedan atrás y no saben como entrar. Por este motivo hemos decidido crear The Stocker. Una red social enfocada completamente en aquellas personas que desean aprender más acerca del mundo financiero directamente desde los expertos.
 ## Nuestra solución
