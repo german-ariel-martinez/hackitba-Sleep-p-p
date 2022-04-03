@@ -15,7 +15,16 @@ MIN_RANK_TO_POST = 2
 
 @post.get("/posts")
 def get_posts():
-    return conn.execute(posts.select()).fetchall()
+    all_posts = conn.execute(posts.select()).fetchall()
+    my_arr = []
+    for p in all_posts:
+        comments_of_post = conn.execute(comments.select().where(comments.c.postId == p["id"])).fetchall()
+        my_dict = {}
+        for key in p._mapping:
+            my_dict[key] = p._mapping[key]
+        my_dict['comments'] = comments_of_post
+        my_arr.append(my_dict)
+    return my_arr
 
 @post.post("/post")
 def post_post(new_post_1: Post):

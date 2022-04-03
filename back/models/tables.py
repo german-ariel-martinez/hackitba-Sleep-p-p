@@ -14,6 +14,8 @@ PICTURES_ID_SEQ = Sequence('pictures_id_seq')
 THREADS_ID_SEQ = Sequence('threads_id_seq')
 POSTS_ID_SEQ = Sequence('posts_id_seq')
 COMMENTS_ID_SEQ = Sequence('comments_id_seq')
+COMPANY_ID_SEQ = Sequence('company_id_seq')
+AMA_POSTS_ID_SEQ = Sequence('ama_posts_id_seq')
             
 pictures = Table("pictures", meta,
             Column("id", Integer, PICTURES_ID_SEQ, primary_key=true, server_default=PICTURES_ID_SEQ.next_value(), unique=true),
@@ -73,5 +75,28 @@ saved_posts = Table("savedPosts", meta,
             Column("postId", Integer, ForeignKey("posts.id"), nullable=False),
             Column("userId", Text, ForeignKey("users.username"), nullable=False))
 
+poll = Table("poll", meta,
+            Column("label", Text,  nullable=False, primary_key=true, unique=true),
+            Column("votes", Integer, server_default='0'))
+
+companies = Table("companies", meta,
+            Column("id", Integer, COMPANY_ID_SEQ, nullable=False, primary_key=true, server_default=COMPANY_ID_SEQ.next_value(), unique=true),
+            Column("name", Text),
+            Column("description", Text))
+
+suscriptions = Table("suscriptions", meta,
+            Column("company_id", ForeignKey("companies.id")),
+            Column("username", ForeignKey("users.username")))
+
+
+ama_posts = Table("amaPosts", meta,
+            Column("id", Integer, AMA_POSTS_ID_SEQ, nullable=False, primary_key=true, server_default=AMA_POSTS_ID_SEQ.next_value(), unique=true),
+            Column("title", Text, nullable=False),
+            Column("text", Text, nullable=False),
+            Column("author", Text, ForeignKey("users.username"), nullable=False),
+            Column("threadId", Integer, ForeignKey("threads.id")),
+            Column("companyId", Integer, ForeignKey("companies.id"), nullable=False),
+            Column("timestamp", Time, nullable=False),
+            Column("score", Integer))
 
 meta.create_all(engine)

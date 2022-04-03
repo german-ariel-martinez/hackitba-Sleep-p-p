@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from config.db import meta
-from models.tables import notifications, users
+from models.tables import notifications, users, suscriptions
 from config.db import conn, meta
 from sqlalchemy.sql.expression import delete, join, select
 from sqlalchemy import exc
@@ -12,7 +12,7 @@ user = APIRouter()
 def get_users():
     return conn.execute(users.select()).fetchall()
 
-@user.post("/user", response_model=Response, tags=["Usuarios"])
+@user.post("/user")
 def post_user(user: CompleteUser):
     new_user = {
         "username": user.username,
@@ -38,3 +38,16 @@ def get_userid(username: str):
     select_st = select([users.c.username, users.c.description, users.c.birthdate, users.c.rank, users.c.pictureId, users.c.isVerified, users.c.email, users.c.website, users.c.linkedin]).select_from(users).where(users.c.username == username)
     res = conn.execute(select_st).fetchone()
     return res
+
+
+@user.post("/suscription/{company_id}")
+def user_suscribe(company_id: int, username: str):
+    new_suscription = {
+        "company_id": company_id,
+        "username": username
+    }
+    try:
+        res = conn.execute(suscriptions.insert().values(new_suscription))
+    except exc.IntegrityError:
+        return {"status":-1, "detail":{"error":"El usuario ya esta suscrito"}}
+    return {"status":1, "detail":"ok"}

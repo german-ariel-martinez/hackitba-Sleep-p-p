@@ -4,16 +4,16 @@
     <div class="login-body">
       <div class="login-form">
         <div class="form">
-          <form action="submit" class="customForm">
+          <div class="customForm">
             <div class="formTitle">Log in</div>
             <div class="formBody">
-              <input class="formInput" type="text" placeholder="Enter email">
-              <input class="formInput" type="text" placeholder="Enter password">
+              <input class="formInput" type="text" placeholder="Enter username" v-model="username"/>
+              <input class="formInput" type="password" placeholder="Enter password" v-model="password"/>
             </div>
             <div class="formButton">
-              <button type="button">Submit</button>
+              <button @click="submitLoginForm()">Submit</button>
             </div>
-          </form>
+          </div>
         </div>
         <div class="info">
           <div class="infoTitle">Having any troubles?</div>
@@ -30,6 +30,35 @@
     </div>
   </div>
 </template>
+
+<script>
+import LoginNavbar from '@/components/LoginNavbar.vue'
+import axios from "axios"
+export default {
+  name: 'LoginPage',
+  data(){
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    submitLoginForm() {
+      axios.post("/login", 
+                {"username":this.username, "password":this.password})
+            .then((res) => { 
+                              console.log('entre al then')
+                              if(res.data.status == 1){
+                              localStorage.username = this.username; 
+                              this.$router.push({name:'HomePage'});
+            }}).catch(error => {console.log(error);});
+    },
+  },
+  components: {
+      LoginNavbar,
+  }
+}
+</script>
 
 <style scoped>
   .textHolder {
@@ -152,14 +181,3 @@
     width: 100%;
   }
 </style>
-
-<script>
-// @ is an alias to /src
-import LoginNavbar from '@/components/LoginNavbar.vue'
-export default {
-  name: 'LandingPage',
-  components: {
-      LoginNavbar,
-  }
-}
-</script>

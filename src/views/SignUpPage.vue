@@ -4,26 +4,26 @@
     <div class="login-body">
       <div class="login-form">
         <div class="form">
-          <form action="submit" class="customForm">
+          <div class="customForm">
             <div class="formTitle">Personal information</div>
             <div class="formBody">
-              <input class="formInput" type="text" placeholder="Enter username">
-              <input class="formInput" type="date" placeholder="Birthdate" style="padding-right:10px">
-              <input class="formInput" type="text" placeholder="Enter email">
-              <input class="formInput" type="text" placeholder="Enter password">
-              <input class="formInput" type="text" placeholder="Confirm password">
+              <input v-model="username" class="formInput" type="text" placeholder="Enter username">
+              <input v-model="birthdate" class="formInput" type="date" placeholder="Birthdate" style="padding-right:10px">
+              <input v-model="email" class="formInput" type="text" placeholder="Enter email">
+              <input v-model="password" class="formInput" type="text" placeholder="Enter password">
+              <input v-model="password" class="formInput" type="text" placeholder="Confirm password">
             </div>
             <div class="formButton">
-              <button type="button">Submit</button>
+              <button @click="createAccount()">Submit</button>
             </div>
-          </form>
+          </div>
         </div>
         <div class="info">
           <div class="infoTitle">Additional information</div>
           <div class="textHolder">
-            <input class="formInput" type="text" placeholder="LinkedIn account">
-            <input class="formInput" type="text" placeholder="Personal website">
-            <textarea rows="6" cols="50" class="textArea" placeholder="Description" wrap=""/>
+            <input v-model="linkedin" class="formInput" type="text" placeholder="LinkedIn account">
+            <input v-model="website" class="formInput" type="text" placeholder="Personal website">
+            <textarea v-model="description" rows="6" cols="50" class="textArea" placeholder="Description" wrap=""/>
           </div>
           <div class="textInfo"> These fields are optional. </div>
         </div>
@@ -31,6 +31,49 @@
     </div>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import LoginNavbar from '@/components/LoginNavbar.vue'
+import axios from "axios"
+export default {
+  name: 'SignUpPage',
+  components: {
+      LoginNavbar,
+  },
+  data(){
+    return {
+      username: '',
+      password: '',
+      email: '',
+      birthdate: '',
+      description: '',
+      linkedin: '',
+      website: ''
+    }
+  },
+  methods: { 
+    createAccount() {
+      axios.post("/user", {
+        "username": this.username,
+        "password": this.password,
+        "description": this.description,
+        "pictureID": '',
+        "birthdate": this.birthdate,
+        "email": this.email,
+        "linkedin": this.linkedin,
+        "website": this.website
+      }, {"Content-Type": "application/json"}).then(res => {
+        if(res.data.status == 1){
+          localStorage.username = this.username; 
+          this.$router.push({name:'HomePage'});
+        }
+      }).catch(error => {console.log(error);});
+      
+    },
+  }
+}
+</script>
 
 <style scoped>
   .textInfo {
@@ -198,14 +241,3 @@
     width: 100%;
   }
 </style>
-
-<script>
-// @ is an alias to /src
-import LoginNavbar from '@/components/LoginNavbar.vue'
-export default {
-  name: 'LandingPage',
-  components: {
-      LoginNavbar,
-  }
-}
-</script>

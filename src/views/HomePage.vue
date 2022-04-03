@@ -11,11 +11,29 @@
                     </div>
                 </div>
                 <div class="sideBar-buttons">
-                    <div class="sideBar-button">
+                    <div class="sideBar-button" @click="Feed()">
                         <div class="button-icon">
                             <b-icon class="h4" style="margin-bottom:0; color: #c62034" icon="view-list"/>
                         </div>
                         <div class="button-text">Feed</div>
+                    </div>
+                    <div class="sideBar-button" @click="CPost()">
+                        <div class="button-icon">
+                            <b-icon class="h4" style="margin-bottom:0; color: #c62034" icon="file-earmark-plus"/>
+                        </div>
+                        <div class="button-text">Create a post</div>
+                    </div>
+                    <div class="sideBar-button" @click="sotm()">
+                        <div class="button-icon">
+                            <b-icon class="h4" style="margin-bottom:0; color: #c62034" icon="calendar-check"/>
+                        </div>
+                        <div class="button-text">Subject of the month</div>
+                    </div>
+                    <div class="sideBar-button" @click="Vote()">
+                        <div class="button-icon">
+                            <b-icon class="h4" style="margin-bottom:0; color: #c62034" icon="bookmark-check"/>
+                        </div>
+                        <div class="button-text">Vote for a subject</div>
                     </div>
                     <div class="sideBar-button">
                         <div class="button-icon">
@@ -47,9 +65,31 @@
                 </div>
             </div>
         </div>
-        <div class="postFeed"></div>
+        <div class="postFeed">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
+
+<script>
+export default {
+    name: 'HomePage',
+    methods: {
+        Feed(){
+            this.$router.push('/home/feed')
+        },
+        Vote(){
+            this.$router.push('/home/vote')
+        },
+        CPost(){
+            this.$router.push('/home/createpost')
+        },
+        sotm(){
+            this.$router.push('/home/sotm')
+        }
+    }
+}
+</script>
 
 <style scoped>
     .logout {
@@ -108,7 +148,7 @@
     }
     .sideBar-buttons {
         display: grid;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 5fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 5fr;
     }
     .sideBar-header-title {
         background-color: #c62034;

@@ -43,3 +43,13 @@ class Comment(BaseModel):
 class Credentials(BaseModel):
     username: str
     password: str
+
+class Company(BaseModel):
+    name: str
+    description: str
+
+class AMA_post(BaseModel):
+    title: str
+    text: str
+    author: str
+    
